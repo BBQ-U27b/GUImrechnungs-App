@@ -1,2 +1,2 @@
 # GUImrechnungs-App
-Simple tool to convert basic SI units
+Simple tool to convert basic SI Units and differnt currencys
