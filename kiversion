@@ -1,0 +1,54 @@
+//überarbeitet von KI
+const readline = require('readline');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+const berechnet = (wert, auswahl) => {
+    if (auswahl === '1') {
+        return wert * 0.621; // Kilometer zu Meilen
+    } else if (auswahl === '2') {
+        return wert / 0.621; // Meilen zu Kilometer
+    } else if (auswahl === '3') {
+        return (wert * 1.8) + 32; // Celsius zu Fahrenheit
+    } else if (auswahl === '4') {
+        return (wert - 32) / 1.8; // Fahrenheit zu Celsius
+    } else if (auswahl === '5') {
+        return wert * 1.15; // Euro zu Dollar
+    } else if (auswahl === '6') {
+        return wert / 1.15; // Dollar zu Euro
+    } else {
+        console.log("Dies ist keine gültige Eingabe. Versuchen Sie es nochmal.");
+        return null;
+    }
+};
+
+function auswahlwert() {
+    console.log("Auswahlmöglichkeiten sind: (1) = Kilometer => Meilen, (2) = Meilen => Kilometer, (3) = Celsius => Fahrenheit, \n(4) = Fahrenheit => Celsius, (5) = Euro => Dollar, (6) = Dollar => Euro \nFalls Sie das Berechnungstool verlassen möchten, drücken Sie 'e'.");
+    rl.question("Bitte Auswahl treffen: ", (input) => {let auswahl = input.replace(/[^e0-9]/g, '');
+        if (auswahl === '') {
+            console.log("Bitte eine gültige Zahl eingeben.");
+            auswahlwert(); // Wiederhole die Frage
+        } else if (auswahl === 'e') {
+            console.log("Wenn Sie weitere Berechnungen erhalten möchten, stehe ich Ihnen gerne zur Verfügung.\nBis dahin!");
+            rl.close();
+        } else {
+            rl.question("Bitte Wert eingeben: ", (wertInput) => {
+                let wert = parseFloat(wertInput);
+                if (isNaN(wert)) {
+                    console.log("Bitte eine gültige Zahl eingeben.");
+                    auswahlwert(); // Wiederhole die Frage
+                } else {
+                    let ergebnis = berechnet(wert, auswahl);
+                    if (ergebnis !== null) {
+                        console.log(`Das Ergebnis der Umrechnung ist: ${ergebnis},`);
+                    }
+                    rl.close();
+                }
+            });
+        }
+    });
+}
+
+auswahlwert();

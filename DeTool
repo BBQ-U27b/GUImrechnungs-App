@@ -1,0 +1,57 @@
+const readline = require('readline')
+const rl = readline.createInterface({
+    input:process.stdin,
+    output:process.stdout
+});
+
+
+const berechnet = (wert, auswahl) => {
+    if (auswahl === '1') {
+        return wert  * 0.621 + " Meilen"; // Kilometer zu Meilen
+    } else if (auswahl === '2') {
+        return wert / 0.621 + "km"; // Meilen zu Kilometer
+    } else if (auswahl === '3') {
+        return (wert * 1.8) + 32 + "°F"; // Celsius zu Fahrenheit
+    } else if (auswahl === '4') {
+        return (wert - 32) / 1.8 + "°C"; // Fahrenheit zu Celsius
+    } else if (auswahl === '5') {
+        return wert * 1.15 + "€"; // Euro zu Dollar
+    } else if (auswahl === '6') {
+        return wert / 1.15 + "$"; // Dollar zu Euro
+    } else {
+        console.log("Dies ist keine gültige eingabe. versuchen sie es nochmal.")
+        return null;
+    }
+}
+
+
+function auswahlwert(){
+        	console.log("Willkommen zu meinem kleinen Programm hier können sie einpaar Si einheiten und Währungen umrechen.\nViel Spaß!\n\n");
+            console.log("Auswahlmöglichkeiten sind: \n(1) = Kilometern => Meilen, (2) = Meilen => Kilometern, (3) = Celsius => Fahrenheit, \n(4) = Fahrenheit => Celsius, (5) = Euro => Dollar, (6) = Dollar => Euro\n\nFalls sie das Berechnungstool verlassen möchten drücken sie 'e'.");
+            rl.question("\nBitte eine Auswahl treffen: ", (input) => {let auswahl = input.replace(/[^e0-9]/g, '');
+            if (auswahl === ''){
+                console.log("Bitte eine gültige Zahl eingeben.");
+                auswahlwert();
+                }
+            else if (auswahl === 'e'){
+                console.log ("Wenn sie weitere berechnungen erhalten möchten stehe ich ihnen gerne zur verfügung.\nBis dahin!");
+                rl.close();
+                }
+            else{
+            rl.question("Bitte einen wert eingeben und enter drücken um berechnung zu starten: ", (wertInput) => {let wert = parseFloat(wertInput);
+            if (wert !== wert) {
+                console.log("Bitte eine gültige Zahl eingeben.");
+                auswahlwert();
+                }
+            else {let ergebnis = berechnet(wert, auswahl);
+            if (ergebnis !== null) {
+                console.log("Das Ergebnis der Umrechnung ist:" ,ergebnis,"\n\nWenn sie weitere berechnungen tätigen wollen kommen sie gerne wieder.\nAuf wiedersehen!");
+                }
+                rl.close();
+                }
+            }); 
+        }
+    });
+}
+
+auswahlwert();
