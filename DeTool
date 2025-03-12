@@ -25,7 +25,8 @@ const berechnet = (wert, auswahl) => {
 }
 
 
-function auswahlwert(){console.log("Dies ist die Vollversion\n\n");
+function auswahlwert(){
+            console.log("Dies ist die Vollversion\n\n");
         	console.log("Willkommen zu meinem kleinen Programm hier können sie einpaar Si einheiten und Währungen umrechen.\nViel Spaß!\n\n");
             console.log("Auswahlmöglichkeiten sind: \n(1) = Kilometern => Meilen, (2) = Meilen => Kilometern, (3) = Celsius => Fahrenheit, \n(4) = Fahrenheit => Celsius, (5) = Euro => Dollar, (6) = Dollar => Euro\n\nFalls sie das Berechnungstool verlassen möchten drücken sie 'e'.");
             rl.question("\nBitte eine Auswahl treffen: ", (input) => {let auswahl = input.replace(/[^e0-9]/g, '');
